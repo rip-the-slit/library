@@ -1,4 +1,6 @@
 const myLibrary = [];
+const newBookButton = document.querySelector('.newBookButton')
+const dialog = document.querySelector('dialog')
 
 function Book(title, author, genre, numberOfPages) {
     this['Title'] = title;
@@ -19,7 +21,6 @@ function refreshLibrary() {
     myLibrary.forEach((book, index) => {
         const card = document.createElement('div')
         card.classList = "card"
-        card.setAttribute('data-attribute', index)
         for (let property in book) {
             const p = document.createElement('p')
             const key = document.createElement('span')
@@ -48,8 +49,12 @@ function refreshLibrary() {
         card.appendChild(deleteButton)
         container.appendChild(card)
     })
-    body.appendChild(container)
+    body.prepend(container)
 }
+
+newBookButton.addEventListener('click', () => {
+    dialog.show()
+})
 
 addBookToLibrary(new Book('Galazilla', 'Glinda Spear', 'Space Opera', 1004))
 addBookToLibrary(new Book('House', 'Mr. Someone', 'Fantasy', 453))

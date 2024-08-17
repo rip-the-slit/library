@@ -7,5 +7,6 @@ function Book(title, author, genre, numberOfPages) {
     this.numberOfPages = numberOfPages;
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(book) {
+    myLibrary.push(book);
 }

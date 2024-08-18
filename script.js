@@ -8,7 +8,8 @@ const querySelector = {
     updateFormReference : function() {
         this.form = new FormData(document.querySelector('form'))
     },
-    inputs : document.querySelectorAll('form input')
+    inputs : document.querySelectorAll('form input'),
+    hasReadCheckbox : document.getElementById('has-read')
 }
 
 function Book(title, author, genre, numberOfPages, hasRead) {
@@ -16,18 +17,17 @@ function Book(title, author, genre, numberOfPages, hasRead) {
     this['Author'] = author
     this['Genre'] = genre
     this['Number of Pages'] = numberOfPages
-
+    this.hasRead = hasRead
+    
+    Object.defineProperty(this, 'hasRead', {
+        enumerable: false,
+        writable: true
+    })
     Object.defineProperty(this, 'toggleHasRead', {
         value: function() {
             this.hasRead = !(this.hasRead)
         },
         enumerable: false
-    })
-
-    Object.defineProperty(this, 'hasRead', {
-        value: hasRead,
-        enumerable: false,
-        writable: true
     })
 }
 
@@ -90,11 +90,12 @@ querySelector.addBookButton.addEventListener('click', (event) => {
     event.preventDefault()
     querySelector.updateFormReference()
     const body = document.querySelector('body')
-
+    const hasRead = querySelector.hasReadCheckbox.checked
     addBookToLibrary(new Book(querySelector.form.get('title'),
                             querySelector.form.get('author'),
                             querySelector.form.get('genre'),
-                            querySelector.form.get('numberOfPages')))
+                            querySelector.form.get('numberOfPages'),
+                            hasRead))
     body.removeChild(body.firstChild)
     refreshLibrary()
     querySelector.dialog.close()

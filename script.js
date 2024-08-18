@@ -101,7 +101,7 @@ querySelector.dialogBackdrop.addEventListener('click', () => {
     querySelector.deactivateDialogBackdrop()
 })
 
-querySelector.addBookButton.addEventListener('click', (event) => {
+document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault()
     querySelector.updateFormReference()
     const body = document.querySelector('body')

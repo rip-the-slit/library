@@ -15,12 +15,12 @@
     <div class="dialog-backdrop">
         <dialog>
             <form action="">
-                <label for="title">Title:<input name="title" id="title" type="text" placeholder="Galazilla"></label>
-                <label for="author">Author:<input name="author" id="author" type="text" placeholder="Mark Zuckerberg"></label>
-                <label for="genre">Genre:<input name="genre" id="genre" type="text" placeholder="Space Opera"></label>
-                <label for="number-of-pages">Number of Pages:<input name="numberOfPages" id="number-of-pages" type="number" placeholder="1954"></label>
-                <label for="has-read"><input type="checkbox" name="hasRead" id="has-read">Has read</label>
-                <button class="addBookButton" type="button">Add Book</button>
+                <label for="title">Title:<input name="title" id="title" type="text" placeholder="Galazilla" required minlength="2" maxlength="30"></label>
+                <label for="author">Author:<input name="author" id="author" type="text" placeholder="Mark Zuckerberg" required minlength="2" maxlength="30"></label>
+                <label for="genre">Genre:<input name="genre" id="genre" type="text" placeholder="Space Opera" required minlength="2" maxlength="30"></label>
+                <label for="number-of-pages">Number of Pages:<input name="numberOfPages" id="number-of-pages" type="number" placeholder="1954" required min="1" max="99999"></label>
+                <label for="has-read"><input type="checkbox" name="hasRead" id="has-read" required>Has read</label>
+                <button class="addBookButton" type="submit">Add Book</button>
             </form>
         </dialog>
     </div>

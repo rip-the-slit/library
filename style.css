@@ -44,9 +44,12 @@
 body {
   --background-slate: #e2e8f0;
   --stronger-slate: #94a3b8;
+  --dark-slate: #334155;
   --weak-slate: #f8fafc;
+  --blue: #1d4ed8;
+  --amber: #fbbf24;
     padding-top: 10px;
-    background: url('./images/jonathan-singer-NgU7IJ5XuyY-unsplash.jpg');
+    background: var(--amber);
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -70,6 +73,7 @@ body {
     background: white;
     border-radius: 10px;
     padding: 25px;
+    padding-top: 15px;
     display: grid;
     grid-template-columns: 90px 1fr;
 }
@@ -114,7 +118,7 @@ body {
 }
 
 .read-indicator[read] {
-  background: blue;
+  background: var(--blue);
   border: 0;
   content: url(./images/check.svg);
   padding: 5px;
@@ -122,7 +126,7 @@ body {
 
 .newBookButton,
 .addBookButton {
-  background-color: var(--stronger-slate);
+  background-color: var(--dark-slate);
   border: 0;
   padding: 10px 20px;
   border-radius: 10px;
@@ -135,7 +139,7 @@ body {
   display: grid;
   grid-template-columns: 28px 1fr;
   align-items: center;
-  gap: 5px;
+  gap: 2px;
 }
 
 .dialog-backdrop {
@@ -148,5 +152,66 @@ body {
 }
 
 dialog { 
+  width: min(600px, 90%);
   pointer-events: initial;
+  border: 0;
+  margin: 0 auto;
+  padding: 50px 25px;
+  border-radius: 10px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  row-gap: 0px;
+  font-size: 20px;
+}
+
+form > label {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  text-align: right;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+form input {
+  grid-column: 2;
+  width: 260px;
+  justify-self: left;
+  border-radius: 5px;
+  border: 1px solid var(--stronger-slate);
+  font-size: 17px;
+  padding: 8px;
+}
+
+form label[for="number-of-pages"] {
+  margin-bottom: 10px;
+}
+
+form label[for="has-read"] {
+  grid-column: 2;
+  justify-self: left;
+  grid-template-columns: repeat(2, max-content) 1fr;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+form input[id="has-read"] {
+  width: initial;
+  transform: scale(1.2);
+}
+
+.addBookButton {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+.dialog-backdrop[style="pointer-events: initial;"] {
+  background: rgba(0, 0, 0, 0.400);
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr;
 }

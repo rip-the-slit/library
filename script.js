@@ -120,7 +120,7 @@ querySelector.addBookButton.addEventListener('click', (event) => {
     })
 })
 
-addBookToLibrary(new Book('Galazilla', 'Glinda Spear', 'Space Opera', 1004, true))
-addBookToLibrary(new Book('House', 'Mr. Someone', 'Fantasy', 453, true))
+addBookToLibrary(new Book('Dune', 'Frank Herbert', 'Space Opera', 632, true))
+addBookToLibrary(new Book("Old Man's War", 'John Scalzi', 'Space Opera', 320, false))
 
 refreshLibrary()

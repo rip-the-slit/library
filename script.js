@@ -1,6 +1,9 @@
 const myLibrary = [];
 const newBookButton = document.querySelector('.newBookButton')
 const dialog = document.querySelector('dialog')
+const addBookButton = document.querySelector('.addBookButton')
+const form = new FormData(document.querySelector('form'))
+const inputs = document.querySelectorAll('form input')
 
 function Book(title, author, genre, numberOfPages) {
     this['Title'] = title;
@@ -54,6 +57,22 @@ function refreshLibrary() {
 
 newBookButton.addEventListener('click', () => {
     dialog.show()
+})
+
+addBookButton.addEventListener('click', (event) => {
+    event.preventDefault()
+    const body = document.querySelector('body')
+
+    addBookToLibrary(new Book(form.get('title'),
+                            form.get('author'),
+                            form.get('genre'),
+                            form.get('numberOfPages')))
+    body.removeChild(body.firstChild)
+    refreshLibrary()
+    dialog.close()
+    inputs.forEach((input) => {
+        input.value = ''
+    })
 })
 
 addBookToLibrary(new Book('Galazilla', 'Glinda Spear', 'Space Opera', 1004))

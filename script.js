@@ -11,11 +11,24 @@ const querySelector = {
     inputs : document.querySelectorAll('form input')
 }
 
-function Book(title, author, genre, numberOfPages) {
-    this['Title'] = title;
-    this['Author'] = author;
-    this['Genre'] = genre;
-    this['Number of Pages'] = numberOfPages;
+function Book(title, author, genre, numberOfPages, hasRead) {
+    this['Title'] = title
+    this['Author'] = author
+    this['Genre'] = genre
+    this['Number of Pages'] = numberOfPages
+
+    Object.defineProperty(this, 'toggleHasRead', {
+        value: function() {
+            this.hasRead = !(this.hasRead)
+        },
+        enumerable: false
+    })
+
+    Object.defineProperty(this, 'hasRead', {
+        value: hasRead,
+        enumerable: false,
+        writable: true
+    })
 }
 
 function addBookToLibrary(book) {
@@ -47,8 +60,10 @@ function refreshLibrary() {
         }
         const readIndicator = document.createElement('div')
         readIndicator.classList = 'read-indicator'
+        if (book.hasRead) {readIndicator.toggleAttribute('read')}
         readIndicator.addEventListener('click', () => {
             readIndicator.toggleAttribute('read')
+            book.toggleHasRead()
         })
 
         const deleteButton = document.createElement('button')
@@ -88,7 +103,7 @@ querySelector.addBookButton.addEventListener('click', (event) => {
     })
 })
 
-addBookToLibrary(new Book('Galazilla', 'Glinda Spear', 'Space Opera', 1004))
-addBookToLibrary(new Book('House', 'Mr. Someone', 'Fantasy', 453))
+addBookToLibrary(new Book('Galazilla', 'Glinda Spear', 'Space Opera', 1004, true))
+addBookToLibrary(new Book('House', 'Mr. Someone', 'Fantasy', 453, true))
 
 refreshLibrary()

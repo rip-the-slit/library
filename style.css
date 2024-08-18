@@ -46,7 +46,8 @@ body {
   --stronger-slate: #94a3b8;
   --weak-slate: #f8fafc;
     padding-top: 10px;
-    background: #e2e8f0;
+    background: url('./images/jonathan-singer-NgU7IJ5XuyY-unsplash.jpg');
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -123,9 +124,18 @@ body {
 .addBookButton {
   background-color: var(--stronger-slate);
   border: 0;
-  padding: 10px 40px;
+  padding: 10px 20px;
   border-radius: 10px;
   color: white;
+  fill: white;
+  font-size: 18px;
+}
+
+.newBookButton {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  gap: 5px;
 }
 
 .dialog-backdrop {

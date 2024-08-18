@@ -45,6 +45,11 @@ function refreshLibrary() {
             p.appendChild(value)
             card.appendChild(p)
         }
+        const readIndicator = document.createElement('div')
+        readIndicator.classList = 'read-indicator'
+        readIndicator.addEventListener('click', () => {
+            readIndicator.toggleAttribute('read')
+        })
 
         const deleteButton = document.createElement('button')
         deleteButton.classList = 'delete-button'
@@ -55,6 +60,7 @@ function refreshLibrary() {
             refreshLibrary()
         })
 
+        card.appendChild(readIndicator)
         card.appendChild(deleteButton)
         container.appendChild(card)
     })

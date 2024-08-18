@@ -4,6 +4,13 @@ const querySelector = {
     newBookButton : document.querySelector('.newBookButton'),
     addBookButton : document.querySelector('.addBookButton'),
     dialog : document.querySelector('dialog'),
+    dialogBackdrop : document.querySelector('.dialog-backdrop'),
+    activateDialogBackdrop : function() {
+        this.dialogBackdrop.setAttribute('style', 'pointer-events: initial;')
+    },
+    deactivateDialogBackdrop : function() {
+        this.dialogBackdrop.setAttribute('style', 'pointer-events: none;')
+    },
     form : new FormData(document.querySelector('form')),
     updateFormReference : function() {
         this.form = new FormData(document.querySelector('form'))
@@ -84,6 +91,14 @@ function refreshLibrary() {
 
 querySelector.newBookButton.addEventListener('click', () => {
     querySelector.dialog.show()
+    querySelector.activateDialogBackdrop()
+})
+
+querySelector.dialog.addEventListener('click', (ev) => {ev.stopPropagation()})
+
+querySelector.dialogBackdrop.addEventListener('click', () => {
+    querySelector.dialog.close()
+    querySelector.deactivateDialogBackdrop()
 })
 
 querySelector.addBookButton.addEventListener('click', (event) => {
@@ -99,6 +114,7 @@ querySelector.addBookButton.addEventListener('click', (event) => {
     body.removeChild(body.firstChild)
     refreshLibrary()
     querySelector.dialog.close()
+    querySelector.deactivateDialogBackdrop()
     querySelector.inputs.forEach((input) => {
         input.value = ''
     })

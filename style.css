@@ -42,16 +42,21 @@
   }
 
 body {
+  --background-slate: #e2e8f0;
+  --stronger-slate: #94a3b8;
+  --weak-slate: #f8fafc;
     padding-top: 10px;
     background: #e2e8f0;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    font-family: "Radio Canada Big", sans-serif;
+    gap: 20px;
 }
 
 .container {
-    max-width: min(700px, 100vw);
+    max-width: min(800px, 100vw);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-template-rows: 200px;
@@ -60,18 +65,67 @@ body {
 }
 
 .card {
+    position: relative;
     background: white;
+    border-radius: 10px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 90px 1fr;
+}
+
+.card > p {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  gap: 10px;
+}
+
+.card em {
+  font-style: normal;
+  font-weight: 600;
+}
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 10px;
+  border: 0;
+  display: grid;
+  place-content: center;
 }
 
 .read-indicator {
-  height: 20px;
-  width: 20px;
-  border: 1px solid grey;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  height: 40px;
+  width: 40px;
+  border: 1px solid var(--stronger-slate);
   border-radius: 50%;
+  content: url(./images/bookmark.svg);
+  fill: white;
+  background: var(--weak-slate);
+  padding: 6px;
 }
 
 .read-indicator[read] {
   background: blue;
+  border: 0;
+  content: url(./images/check.svg);
+  padding: 5px;
+}
+
+.newBookButton,
+.addBookButton {
+  background-color: var(--stronger-slate);
+  border: 0;
+  padding: 10px 40px;
+  border-radius: 10px;
+  color: white;
 }
 
 .dialog-backdrop {

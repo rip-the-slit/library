@@ -1,9 +1,15 @@
 const myLibrary = [];
-const newBookButton = document.querySelector('.newBookButton')
-const dialog = document.querySelector('dialog')
-const addBookButton = document.querySelector('.addBookButton')
-const form = new FormData(document.querySelector('form'))
-const inputs = document.querySelectorAll('form input')
+
+const querySelector = {
+    newBookButton : document.querySelector('.newBookButton'),
+    addBookButton : document.querySelector('.addBookButton'),
+    dialog : document.querySelector('dialog'),
+    form : new FormData(document.querySelector('form')),
+    updateFormReference : function() {
+        this.form = new FormData(document.querySelector('form'))
+    },
+    inputs : document.querySelectorAll('form input')
+}
 
 function Book(title, author, genre, numberOfPages) {
     this['Title'] = title;
@@ -55,22 +61,23 @@ function refreshLibrary() {
     body.prepend(container)
 }
 
-newBookButton.addEventListener('click', () => {
-    dialog.show()
+querySelector.newBookButton.addEventListener('click', () => {
+    querySelector.dialog.show()
 })
 
-addBookButton.addEventListener('click', (event) => {
+querySelector.addBookButton.addEventListener('click', (event) => {
     event.preventDefault()
+    querySelector.updateFormReference()
     const body = document.querySelector('body')
 
-    addBookToLibrary(new Book(form.get('title'),
-                            form.get('author'),
-                            form.get('genre'),
-                            form.get('numberOfPages')))
+    addBookToLibrary(new Book(querySelector.form.get('title'),
+                            querySelector.form.get('author'),
+                            querySelector.form.get('genre'),
+                            querySelector.form.get('numberOfPages')))
     body.removeChild(body.firstChild)
     refreshLibrary()
-    dialog.close()
-    inputs.forEach((input) => {
+    querySelector.dialog.close()
+    querySelector.inputs.forEach((input) => {
         input.value = ''
     })
 })

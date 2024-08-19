@@ -76,6 +76,13 @@ body {
     padding-top: 15px;
     display: grid;
     grid-template-columns: 90px 1fr;
+    animation: card cubic-bezier(.17,.67,.13,.97) 200ms;
+}
+
+@keyframes card {
+  0% {transform: scale(0.7); opacity: 0;}
+  80% {opacity: 1;}
+  100% {transform: scale(1);}
 }
 
 .card > p {
@@ -122,6 +129,14 @@ body {
   border: 0;
   content: url(./images/check.svg);
   padding: 5px;
+  animation: read-indicator cubic-bezier(.17,.67,.87,.52) 140ms alternate-reverse;
+}
+
+@keyframes read-indicator {
+  0% {transform: scale(1);}
+  30% {transform: scale(0.8);}
+  60% {transform: scale(1.2);}
+  100% {transform: scale(1);}
 }
 
 .newBookButton,
@@ -133,6 +148,16 @@ body {
   color: white;
   fill: white;
   font-size: 18px;
+}
+
+.newBookButton:active,
+.addBookButton:active {
+  animation: buttons cubic-bezier(.74,.16,0,.85) 150ms;
+}
+
+@keyframes buttons {
+  from {transform: scale(0.8);}
+  to {transform: scale(1);}
 }
 
 .newBookButton {
@@ -151,13 +176,21 @@ body {
   pointer-events: none;
 }
 
-dialog { 
+dialog {
   width: min(600px, 90%);
   pointer-events: initial;
   border: 0;
   margin: 0 auto;
   padding: 50px 25px;
   border-radius: 10px;
+  animation: dialogAn cubic-bezier(.73,-0.02,.02,.91) 150ms forwards;
+  animation-delay: 70ms;
+  visibility: hidden;
+}
+
+@keyframes dialogAn {
+  from {transform: translateY(-100%); opacity: 0; visibility: visible;}
+  to {transform: translateY(0%); opacity: 1; visibility: visible;}
 }
 
 form {
@@ -214,4 +247,10 @@ form input[id="has-read"] {
   display: grid;
   place-items: center;
   grid-template-columns: 1fr;
+  animation: backdropAn cubic-bezier(.17,.67,.13,.97) 150ms;
+}
+
+@keyframes backdropAn {
+  from {background: rgba(0, 0, 0, 0.0);}
+  to {background: rgba(0, 0, 0, 0.400);}
 }

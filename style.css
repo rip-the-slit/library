@@ -76,13 +76,14 @@ body {
     padding-top: 15px;
     display: grid;
     grid-template-columns: 90px 1fr;
-    animation: card cubic-bezier(.17,.67,.13,.97) 200ms;
+    animation: card cubic-bezier(.17,.67,.13,.97) 200ms forwards;
+    visibility: hidden;
 }
 
 @keyframes card {
-  0% {transform: scale(0.7); opacity: 0;}
+  0% {transform: scale(0.7); opacity: 0; visibility: visible;}
   80% {opacity: 1;}
-  100% {transform: scale(1);}
+  100% {transform: scale(1); visibility: visible;}
 }
 
 .card > p {
@@ -156,7 +157,7 @@ body {
 }
 
 @keyframes buttons {
-  from {transform: scale(0.8);}
+  from {transform: scale(0.85);}
   to {transform: scale(1);}
 }
 
@@ -183,14 +184,15 @@ dialog {
   margin: 0 auto;
   padding: 50px 25px;
   border-radius: 10px;
-  animation: dialogAn cubic-bezier(.73,-0.02,.02,.91) 150ms forwards;
+  animation: dialogAn cubic-bezier(.73,-0.02,.02,.91) 500ms forwards;
   animation-delay: 70ms;
   visibility: hidden;
 }
 
 @keyframes dialogAn {
-  from {transform: translateY(-100%); opacity: 0; visibility: visible;}
-  to {transform: translateY(0%); opacity: 1; visibility: visible;}
+  from {transform: translateY(-100%) scale(0.8); opacity: 0; visibility: visible;}
+  65% {transform: translateY(0%) scale(0.8); opacity: 1;}
+  to {transform: scale(1); visibility: visible;}
 }
 
 form {

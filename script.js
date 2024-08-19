@@ -50,6 +50,8 @@ function refreshLibrary() {
     myLibrary.forEach((book, index) => {
         const card = document.createElement('div')
         card.classList = "card"
+        const delayTime = 50 * index
+        card.setAttribute('style', `animation-delay: ${delayTime}ms;`)
         for (let property in book) {
             const p = document.createElement('p')
             const key = document.createElement('span')
@@ -120,7 +122,11 @@ document.querySelector('form').addEventListener('submit', (event) => {
     })
 })
 
-addBookToLibrary(new Book('Dune', 'Frank Herbert', 'Space Opera', 632, true))
-addBookToLibrary(new Book("Old Man's War", 'John Scalzi', 'Space Opera', 320, false))
+addBookToLibrary(new Book('Dune', 'Frank Herbert', 'Space Opera', 632, true));
+addBookToLibrary(new Book("Old Man's War", 'John Scalzi', 'Space Opera', 320, false));
+addBookToLibrary(new Book('1984', 'George Orwell', 'Dystopian', 328, true));
+addBookToLibrary(new Book('The Hitchhiker', 'Douglas Adams', 'Science Fiction', 320, false));
+addBookToLibrary(new Book('The Handmaid', 'Margaret Atwood', 'Dystopian', 311, true));
+
 
 refreshLibrary()

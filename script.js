@@ -19,23 +19,21 @@ const querySelector = {
     hasReadCheckbox : document.getElementById('has-read')
 }
 
-function Book(title, author, genre, numberOfPages, hasRead) {
-    this['Title'] = title
-    this['Author'] = author
-    this['Genre'] = genre
-    this['Number of Pages'] = numberOfPages
-    this.hasRead = hasRead
-    
-    Object.defineProperty(this, 'hasRead', {
-        enumerable: false,
-        writable: true
-    })
-    Object.defineProperty(this, 'toggleHasRead', {
-        value: function() {
-            this.hasRead = !(this.hasRead)
-        },
-        enumerable: false
-    })
+class Book {
+    #hasRead;
+    constructor(title, author, genre, numberOfPages, hasRead) {
+        this['Title'] = title
+        this['Author'] = author
+        this['Genre'] = genre
+        this['Number of Pages'] = numberOfPages
+        this.#hasRead = hasRead
+    }
+
+    get hasRead() {return this.#hasRead}
+
+    toggleHasRead() {
+        this.#hasRead = !(this.#hasRead)
+    }
 }
 
 function addBookToLibrary(book) {
